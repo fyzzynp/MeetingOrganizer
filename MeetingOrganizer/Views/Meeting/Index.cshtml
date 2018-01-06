@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MeetingOrganizer.Models.tbl_Meetings>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Toplantı Listesi</h2>
+
+<p>
+    @Html.ActionLink("Yeni Toplantı Oluştur", "Create")
+</p>
+<table>
+    <tr>        
+        <th>
+            Toplantı Konusu
+        </th>
+        <th>
+            Toplantı Tarihi
+        </th>
+        <th>
+            Başlama Saati
+        </th>
+        <th>
+            Bitiş Saati
+        </th>
+        <th>
+            Katılımcılar
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>      
+        <td>
+            @Html.DisplayFor(modelItem => item.Topic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_Participants.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.MeetingID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.MeetingID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.MeetingID })
+        </td>
+    </tr>
+}
+
+</table>

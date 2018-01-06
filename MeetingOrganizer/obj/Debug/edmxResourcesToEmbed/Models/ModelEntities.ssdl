@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MeetingOrganizerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_Meetings">
+    <Key>
+      <PropertyRef Name="MeetingID" />
+    </Key>
+    <Property Name="MeetingID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Topic" Type="nvarchar" MaxLength="500" />
+    <Property Name="Date" Type="smalldatetime" />
+    <Property Name="StartTime" Type="time" Precision="7" />
+    <Property Name="EndTime" Type="time" Precision="7" />
+    <Property Name="ParticipantID" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Participants">
+    <Key>
+      <PropertyRef Name="ParticipantID" />
+    </Key>
+    <Property Name="ParticipantID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="520" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <Association Name="FK__tbl_Meeti__Parti__03317E3D">
+    <End Role="tbl_Participants" Type="Self.tbl_Participants" Multiplicity="0..1" />
+    <End Role="tbl_Meetings" Type="Self.tbl_Meetings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Participants">
+        <PropertyRef Name="ParticipantID" />
+      </Principal>
+      <Dependent Role="tbl_Meetings">
+        <PropertyRef Name="ParticipantID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MeetingOrganizerModelStoreContainer">
+    <EntitySet Name="tbl_Meetings" EntityType="Self.tbl_Meetings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Participants" EntityType="Self.tbl_Participants" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tbl_Meeti__Parti__03317E3D" Association="Self.FK__tbl_Meeti__Parti__03317E3D">
+      <End Role="tbl_Participants" EntitySet="tbl_Participants" />
+      <End Role="tbl_Meetings" EntitySet="tbl_Meetings" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

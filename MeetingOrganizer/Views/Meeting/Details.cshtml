@@ -1,0 +1,49 @@
+﻿@model MeetingOrganizer.Models.tbl_Meetings
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detay</h2>
+
+<fieldset>
+    <legend>Toplantı Detayı</legend>
+
+    <div class="display-label">
+        Toplantı Konusu
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Topic)
+    </div>
+
+    <div class="display-label">
+        Toplantı Tarihi
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Date)
+    </div>
+
+    <div class="display-label">
+        Başlama Saati
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartTime)
+    </div>
+
+    <div class="display-label">
+        Bitiş Saati
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EndTime)
+    </div>
+
+    <div class="display-label">
+        Katılımcılar
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tbl_Participants.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
